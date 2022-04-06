@@ -1,0 +1,20 @@
+{
+  "name": "apitemperaturas",
+  "version": "1.0.0",
+  "description": "API para consultar datos temperatura y humedad de MongoAtlas",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Javier GB",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.9"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
