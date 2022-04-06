@@ -24,7 +24,7 @@ mongoose.connect(urlMongoAtlas,
         else {
             console.log("Conectado correctamente a Mongo Atlas");
             //Abrimos el servidor Express si se ha podido conectar a Mongo
-            app.listen(4000, () => {
+            app.listen(process.env.PORT || 4000, () => {
                 console.log("Servidor funcionando ok en 4000");
             });
         }
