@@ -26,10 +26,7 @@
           />
         </div>
         <div class="col-sm-1">
-          <button
-            class="btn btn-primary form-control"
-            onclick="tiempoReal();"
-          >
+          <button class="btn btn-primary form-control" onclick="tiempoReal();">
             Tiempo Real
           </button>
         </div>
@@ -58,11 +55,11 @@
           height: 400,
           type: "line",
           toolbar: {
-            show: false,  //Se puede poner a true para descargar CSV
+            show: false, //Se puede poner a true para descargar CSV
           },
           animations: {
             enabled: true,
-          }
+          },
         },
         colors: ["#77B6EA", "#545454"],
         dataLabels: {
@@ -91,7 +88,7 @@
           },
         },
         yaxis: {
-          min: 5,
+          min: -15,
           max: 100,
           title: {
             text: "Temperatura y humedad",
@@ -114,7 +111,6 @@
         .toISOString()
         .substring(0, 10);
 
-      
       //Al pulsar el botón ya se va actualizando cada 2 minutos para la fecha de hoy
       function tiempoReal() {
         //Cada 2 minutos actualizamos los datos con la fecha de hoy
@@ -153,6 +149,8 @@
           );
         }
 
+        alert(datos.length);
+
         //Actualizar datos del gráfico
         chart.updateSeries([
           {
@@ -170,6 +168,9 @@
           xaxis: {
             categories: fechas,
             tickAmount: 10,
+            labels: {
+              hideOverlappingLabels: false,
+            },
           },
         });
       }
