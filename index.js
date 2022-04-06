@@ -2,7 +2,8 @@
 const mongoose = require('mongoose');
 const urlMongoAtlas = "mongodb+srv://admin:p7Cx4JSEe3WZeB4@cluster0.qmwhh.mongodb.net/raspberry";
 const express = require("express");
-const cors = require('cors')
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
 

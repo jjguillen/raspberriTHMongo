@@ -13,7 +13,8 @@
     "axios": "^0.26.1",
     "express": "^4.17.3",
     "mongoose": "^6.2.9",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "lite-server": "^2.6.1"
