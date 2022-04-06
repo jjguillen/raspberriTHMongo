@@ -92,3 +92,6 @@ const api = express.Router();
 app.get('/temperaturas', temperaturas);
 app.get('/temperaturas/:fecha', temperaturasFecha);
 app.get('/temperaturas/:fechaStart/:fechaFinish', temperaturasRangoFecha);
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
