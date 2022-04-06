@@ -26,8 +26,11 @@
           />
         </div>
         <div class="col-sm-1">
-          <button class="btn btn-primary form-control" onclick="updateGraf(new Date().toISOString().substring(0, 10));">
-              Tiempo Real
+          <button
+            class="btn btn-primary form-control"
+            onclick="tiempoReal();"
+          >
+            Tiempo Real
           </button>
         </div>
       </div>
@@ -52,19 +55,14 @@
           },
         ],
         chart: {
-          height: 350,
+          height: 400,
           type: "line",
-          dropShadow: {
-            enabled: true,
-            color: "#000",
-            top: 18,
-            left: 7,
-            blur: 10,
-            opacity: 0.2,
-          },
           toolbar: {
-            show: false,
+            show: false,  //Se puede poner a true para descargar CSV
           },
+          animations: {
+            enabled: true,
+          }
         },
         colors: ["#77B6EA", "#545454"],
         dataLabels: {
@@ -116,14 +114,19 @@
         .toISOString()
         .substring(0, 10);
 
-      //Cada 2 minutos actualizamos los datos con la fecha de hoy
-      var intervalId = window.setInterval(function () {
-        updateGraf(new Date().toISOString().substring(0, 10));
-      }, 120000);
+      
+      //Al pulsar el botón ya se va actualizando cada 2 minutos para la fecha de hoy
+      function tiempoReal() {
+        //Cada 2 minutos actualizamos los datos con la fecha de hoy
+        var intervalId = window.setInterval(function () {
+          updateGraf(new Date().toISOString().substring(0, 10));
+        }, 120000);
+      }
 
       //Función que actualiza los datos del gráfico con los de la fecha pasada
       async function updateGraf(fecha) {
         //http://localhost:4000/temperaturas/
+        //https://raspberrijarosoapi.herokuapp.com/temperaturas/
         const response = await fetch(
           "https://raspberrijarosoapi.herokuapp.com/temperaturas/" + fecha,
           {
@@ -143,8 +146,11 @@
         for (let i = 0; i < datos.length; i++) {
           temps.push(datos[i].temperatura);
           humes.push(datos[i].humedad);
-          const miDate = new Date(datos[i].fecha);
-          fechas.push(miDate.getHours() + ":" + miDate.getMinutes());
+          fechas.push(
+            new Date(datos[i].fecha).getHours() +
+              ":" +
+              new Date(datos[i].fecha).getMinutes()
+          );
         }
 
         //Actualizar datos del gráfico
