@@ -203,7 +203,8 @@
 
           //Acceso a MongoAtlas
           var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador cerrado';
-          buttonAct.classList.replace("btn btn-primary form-control", "btn btn-danger form-control");
+          buttonAct.classList.remove("btn-primary");
+          buttonAct.classList.add("btn-danger");
       });
 
       //Cuando pulsemos el botón de actuador que cambie su valor en BBDD

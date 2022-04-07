@@ -85,8 +85,29 @@ async function temperaturasRangoFecha( req, res) {
     }
 }
 
+//Cambiar estado del actuador
+async function cambiarActuador( req, res) {
+    const estado = req.params.estado;
+
+    try {
+        const actuador = await Actuadores.find({ fecha: { $gte: new Date(fechaStart), $lte: new Date(fechaFinish) } }).sort({ fecha: 1 });
+        //console.log(temperaturas);
+        if(!actuador)
+            res.status(400).send({ msg: "Error al cambiar estado" });
+        else {
+            res.status(200).send(actuador);
+        }
+
+    } catch (error) {
+        res.status(500).send(error);
+    }
+
+}
+
+
 //Modelo
 const Temperaturas = require("./temperaturas");
+const Actuadores = require("./actuadores");
 
 //Router
 const api = express.Router();
@@ -96,3 +117,4 @@ app.get('/temperaturas/:fechaStart/:fechaFinish', temperaturasRangoFecha);
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
+app.get('/actuador/:estado', cambiarActuador);
