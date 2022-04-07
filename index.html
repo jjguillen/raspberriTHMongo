@@ -188,20 +188,9 @@
         });
       }
 
-      //EVENTOS JAVASCRIPT --------------------------------------------------------------------------------
-
-      //Evento pulsar datepicker
-      document.getElementById("fecha").addEventListener("change", (event) => {
-        const resultado = document.querySelector("#fecha");
-        updateGraf(resultado.value);
-      });
-
-      //Al cargar la página que pinte el botón de actuador con su valor en BBDD
-      window.addEventListener('load', async function() {
-          console.log('Leer actuador desde MongoAtlas');
-
-          //Acceso a MongoAtlas
-          const response = await fetch(
+      async function consultarActuador() {
+        //Acceso a MongoAtlas
+        const response = await fetch(
             "https://raspberrijarosoapi.herokuapp.com/actuador/",
             {
               method: "GET",
@@ -223,6 +212,21 @@
             buttonAct.innerHTML = 'Actuador Abierto';
             buttonAct.className = "btn btn-success form-control";  
           }
+      }
+
+      //EVENTOS JAVASCRIPT --------------------------------------------------------------------------------
+
+      //Evento pulsar datepicker
+      document.getElementById("fecha").addEventListener("change", (event) => {
+        const resultado = document.querySelector("#fecha");
+        updateGraf(resultado.value);
+      });
+
+      //Al cargar la página que pinte el botón de actuador con su valor en BBDD
+      window.addEventListener('load', async function() {
+          console.log('Leer actuador desde MongoAtlas');
+
+          consultarActuador();
       });
 
       //Cuando pulsemos el botón de actuador que cambie su valor en BBDD
@@ -231,9 +235,34 @@
         var buttonAct = document.getElementById("actuador");
         if (buttonAct.value == 0) {
           console.log('cerrado - lo abro');
+          //Acceso a MongoAtlas
+          const response = await fetch(
+            "https://raspberrijarosoapi.herokuapp.com/actuador/abierto",
+            {
+              method: "GET",
+              mode: "cors",
+              headers: {
+                Accept: "application/json",
+              },
+            }
+          );
         } else if (buttonAct == 1) {
           console.log('abierto - lo cierro');
+          //Acceso a MongoAtlas
+          const response = await fetch(
+            "https://raspberrijarosoapi.herokuapp.com/actuador/cerrado",
+            {
+              method: "GET",
+              mode: "cors",
+              headers: {
+                Accept: "application/json",
+              },
+            }
+          );
         }
+
+        //Actualizamos el botón con el cambio
+        consultarActuador();
       });
     </script>
   </body>
