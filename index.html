@@ -212,24 +212,23 @@
             }
           );
           const datos = await response.json();
-console.log(datos[0]);
-console.log(datos[0].state);
           if (datos[0].state == 'cerrado') {
-            var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador Cerrado';
-            buttonAct.className = "btn btn-success form-control";
+            var buttonAct = document.getElementById("actuador");
+            buttonAct.value = 0;
+            buttonAct.innerHTML = 'Actuador Cerrado';
+            buttonAct.className = "btn btn-danger form-control";
           } else if (datos[0].state == 'abierto') {
-            var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador Abierto';
-            buttonAct.className = "btn btn-danger form-control";  
+            var buttonAct = document.getElementById("actuador");
+            buttonAct.value = 1;
+            buttonAct.innerHTML = 'Actuador Abierto';
+            buttonAct.className = "btn btn-success form-control";  
           }
       });
 
       //Cuando pulsemos el botón de actuador que cambie su valor en BBDD
       document.getElementById("actuador").addEventListener("click", async (event) => {
         console.log("Pulsado");
-
-        //Acceso a MongoAtlas
-        var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador cerrado';
-        buttonAct.className.replace( /(?:^|\s)btn-primary(?!\S)/g , 'btn-danger' );
+        console.log(this.value);
       });
     </script>
   </body>
