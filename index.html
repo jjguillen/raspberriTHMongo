@@ -246,6 +246,10 @@
               },
             }
           );
+          var buttonAct = document.getElementById("actuador");
+          buttonAct.value = 1;
+          buttonAct.innerHTML = 'Actuador Abierto';
+          buttonAct.className = "btn btn-success form-control";  
         } else if (buttonAct == 1) {
           console.log('abierto - lo cierro');
           //Acceso a MongoAtlas
@@ -259,10 +263,12 @@
               },
             }
           );
+          var buttonAct = document.getElementById("actuador");
+          buttonAct.value = 0;
+          buttonAct.innerHTML = 'Actuador Cerrado';
+          buttonAct.className = "btn btn-danger form-control";
         }
 
-        //Actualizamos el botón con el cambio
-        consultarActuador();
       });
     </script>
   </body>
