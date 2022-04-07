@@ -245,7 +245,7 @@
           buttonAct.value = 1;
           buttonAct.innerHTML = 'Actuador Abierto';
           buttonAct.className = "btn btn-success form-control";  
-        } else if (buttonAct == 1) {
+        } else if (buttonAct.value == 1) {
           console.log('abierto - lo cierro');
           //Acceso a MongoAtlas
           const response = await fetch(
