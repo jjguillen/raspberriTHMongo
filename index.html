@@ -30,6 +30,13 @@
             Tiempo Real
           </button>
         </div>
+
+        <div class="col-sm-1" id="actuador">
+          <button class="btn btn-danger form-control" onclick="cambiarActuador();">
+            Actuador cerrado
+          </button>
+        </div>
+
       </div>
       <hr />
     </div>
@@ -183,12 +190,23 @@
       }
 
       //EVENTOS JAVASCRIPT --------------------------------------------------------------------------------
-      
+
       //Evento pulsar datepicker
       document.getElementById("fecha").addEventListener("change", (event) => {
         const resultado = document.querySelector("#fecha");
         updateGraf(resultado.value);
       });
+
+      //Al cargar la página que pinte el botón de actuador con su valor en BBDD
+      window.addEventListener('load', function() {
+          console.log('Leer actuador desde MongoAtlas');
+      });
+
+      //Cuando pulsemos el botón de actuador que cambie su valor en BBDD
+      document.getElementById("actuador").addEventListener("click", (event) => {
+        console.log("Pulsado");
+      });
+
     </script>
   </body>
 </html>
