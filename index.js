@@ -85,6 +85,22 @@ async function temperaturasRangoFecha( req, res) {
     }
 }
 
+//Consultar estado del actuador
+async function consultarActuador( req, res) {
+    try {
+        const actuador = await Actuador.find({ name: 'actuador1' });
+        //console.log(temperaturas);
+        if(!actuador)
+            res.status(400).send({ msg: "Error al obtener actuador" });
+        else {
+            res.status(200).send(actuador);
+        }
+
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 //Cambiar estado del actuador
 async function cambiarActuador( req, res) {
     const estado = req.params.estado;
@@ -127,3 +143,5 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 app.get('/actuador/:estado', cambiarActuador);
+app.get('/actuador/', consultarActuador);
+

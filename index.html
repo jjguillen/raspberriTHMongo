@@ -36,7 +36,6 @@
             Actuador
           </button>
         </div>
-
       </div>
       <hr />
     </div>
@@ -202,8 +201,25 @@
           console.log('Leer actuador desde MongoAtlas');
 
           //Acceso a MongoAtlas
-          var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador cerrado';
-          buttonAct.className = "btn btn-danger form-control";
+          const response = await fetch(
+            "https://raspberrijarosoapi.herokuapp.com/actuador/",
+            {
+              method: "GET",
+              mode: "cors",
+              headers: {
+                Accept: "application/json",
+              },
+            }
+          );
+          const datos = await response.json();
+          if (datos.state == 'cerrado') {
+            var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador Cerrado';
+            buttonAct.className = "btn btn-success form-control";
+          } else {
+            var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador Abierto';
+            buttonAct.className = "btn btn-danger form-control";  
+          }
+
       });
 
       //Cuando pulsemos el botón de actuador que cambie su valor en BBDD
@@ -214,7 +230,6 @@
         var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador cerrado';
         buttonAct.className.replace( /(?:^|\s)btn-primary(?!\S)/g , 'btn-danger' );
       });
-
     </script>
   </body>
 </html>
