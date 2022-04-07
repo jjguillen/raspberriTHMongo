@@ -90,11 +90,20 @@ async function cambiarActuador( req, res) {
     const estado = req.params.estado;
 
     try {
-        const actuador = await Actuadores.find({ fecha: { $gte: new Date(fechaStart), $lte: new Date(fechaFinish) } }).sort({ fecha: 1 });
+        const actuador = await Actuadores.find({ name: 'actuador1' });
         //console.log(temperaturas);
         if(!actuador)
             res.status(400).send({ msg: "Error al cambiar estado" });
         else {
+            //Modificar estado
+            let estado = '';
+            if (actuador.state == 'cerrado') {
+                let estado = 'abierto';
+            } else {
+                let estado = 'cerrado';
+            }
+            
+            let actuadorUpdate = await Actuadores.findOneAndUpdate({ name: 'actuador1' }, { state: estado });
             res.status(200).send(actuador);
         }
 
