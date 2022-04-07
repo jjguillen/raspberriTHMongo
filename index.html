@@ -188,9 +188,20 @@
         });
       }
 
-      async function consultarActuador() {
-        //Acceso a MongoAtlas
-        const response = await fetch(
+      //EVENTOS JAVASCRIPT --------------------------------------------------------------------------------
+
+      //Evento pulsar datepicker
+      document.getElementById("fecha").addEventListener("change", (event) => {
+        const resultado = document.querySelector("#fecha");
+        updateGraf(resultado.value);
+      });
+
+      //Al cargar la página que pinte el botón de actuador con su valor en BBDD
+      window.addEventListener('load', async function() {
+          console.log('Leer actuador desde MongoAtlas');
+
+          //Acceso a MongoAtlas
+          const response = await fetch(
             "https://raspberrijarosoapi.herokuapp.com/actuador/",
             {
               method: "GET",
@@ -212,21 +223,6 @@
             buttonAct.innerHTML = 'Actuador Abierto';
             buttonAct.className = "btn btn-success form-control";  
           }
-      }
-
-      //EVENTOS JAVASCRIPT --------------------------------------------------------------------------------
-
-      //Evento pulsar datepicker
-      document.getElementById("fecha").addEventListener("change", (event) => {
-        const resultado = document.querySelector("#fecha");
-        updateGraf(resultado.value);
-      });
-
-      //Al cargar la página que pinte el botón de actuador con su valor en BBDD
-      window.addEventListener('load', async function() {
-          console.log('Leer actuador desde MongoAtlas');
-
-          consultarActuador();
       });
 
       //Cuando pulsemos el botón de actuador que cambie su valor en BBDD
@@ -246,7 +242,6 @@
               },
             }
           );
-          var buttonAct = document.getElementById("actuador");
           buttonAct.value = 1;
           buttonAct.innerHTML = 'Actuador Abierto';
           buttonAct.className = "btn btn-success form-control";  
@@ -263,7 +258,6 @@
               },
             }
           );
-          var buttonAct = document.getElementById("actuador");
           buttonAct.value = 0;
           buttonAct.innerHTML = 'Actuador Cerrado';
           buttonAct.className = "btn btn-danger form-control";
