@@ -112,7 +112,7 @@ async function cambiarActuador( req, res) {
             res.status(400).send({ msg: "Error al cambiar estado" });
         else {
             let actuadorUpdate = await Actuadores.findOneAndUpdate({ name: 'actuador1' }, { state: estado });
-            res.status(200).send(actuador);
+            res.status(200).send(actuadorUpdate);
         }
 
     } catch (error) {
