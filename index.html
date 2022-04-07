@@ -212,19 +212,15 @@
             }
           );
           const datos = await response.json();
-console.log(datos);
-console.log(datos.state);
-          if (datos.state == 'cerrado') {
+console.log(datos[0]);
+console.log(datos[0].state);
+          if (datos[0].state == 'cerrado') {
             var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador Cerrado';
             buttonAct.className = "btn btn-success form-control";
-          } else if (datos.state == 'abierto') {
+          } else if (datos[0].state == 'abierto') {
             var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador Abierto';
             buttonAct.className = "btn btn-danger form-control";  
-          } else {
-            var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador No sé';
-            buttonAct.className = "btn btn-danger form-control"; 
           }
-
       });
 
       //Cuando pulsemos el botón de actuador que cambie su valor en BBDD
