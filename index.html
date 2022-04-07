@@ -209,6 +209,10 @@
       //Cuando pulsemos el botón de actuador que cambie su valor en BBDD
       document.getElementById("actuador").addEventListener("click", (event) => {
         console.log("Pulsado");
+
+        //Acceso a MongoAtlas
+        var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador cerrado';
+        buttonAct.className.replace( /(?:^|\s)btn-primary(?!\S)/g , 'btn-danger' );
       });
 
     </script>
