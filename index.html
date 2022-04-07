@@ -32,8 +32,8 @@
         </div>
 
         <div class="col-sm-1" id="actuador">
-          <button class="btn btn-danger form-control" onclick="cambiarActuador();">
-            Actuador cerrado
+          <button class="btn btn-primary form-control">
+            Actuador
           </button>
         </div>
 
@@ -200,6 +200,10 @@
       //Al cargar la página que pinte el botón de actuador con su valor en BBDD
       window.addEventListener('load', function() {
           console.log('Leer actuador desde MongoAtlas');
+
+          //Acceso a MongoAtlas
+          var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador cerrado';
+          buttonAct.classList.replace("btn btn-primary form-control", "btn btn-danger form-control");
       });
 
       //Cuando pulsemos el botón de actuador que cambie su valor en BBDD
