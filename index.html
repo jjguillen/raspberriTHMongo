@@ -111,8 +111,17 @@
         .toISOString()
         .substring(0, 10);
 
+
+
+      //FUNCIONES JAVASCRIPT -------------------------------------------------------------------------
+
       //Al pulsar el botón ya se va actualizando cada 2 minutos para la fecha de hoy
       function tiempoReal() {
+
+        document.getElementById("fecha").value = new Date()
+        .toISOString()
+        .substring(0, 10);
+
         //Cada 2 minutos actualizamos los datos con la fecha de hoy
         var intervalId = window.setInterval(function () {
           updateGraf(new Date().toISOString().substring(0, 10));
@@ -173,6 +182,8 @@
         });
       }
 
+      //EVENTOS JAVASCRIPT --------------------------------------------------------------------------------
+      
       //Evento pulsar datepicker
       document.getElementById("fecha").addEventListener("change", (event) => {
         const resultado = document.querySelector("#fecha");
