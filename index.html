@@ -212,7 +212,8 @@
             }
           );
           const datos = await response.json();
-          
+console.log(datos);
+console.log(datos.state);
           if (datos.state == 'cerrado') {
             var buttonAct = document.getElementById("actuador").innerHTML = 'Actuador Cerrado';
             buttonAct.className = "btn btn-success form-control";
