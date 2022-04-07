@@ -31,7 +31,7 @@
           </button>
         </div>
 
-        <div class="col-sm-1">
+        <div class="col-sm-1 float-right">
           <button class="btn btn-primary form-control" id="actuador">
             Actuador
           </button>
@@ -228,7 +228,12 @@
       //Cuando pulsemos el botón de actuador que cambie su valor en BBDD
       document.getElementById("actuador").addEventListener("click", async (event) => {
         console.log("Pulsado");
-        console.log(this.value);
+        var buttonAct = document.getElementById("actuador");
+        if (buttonAct.value == 0) {
+          console.log('cerrado - lo abro');
+        } else if (buttonAct == 1) {
+          console.log('abierto - lo cierro');
+        }
       });
     </script>
   </body>
